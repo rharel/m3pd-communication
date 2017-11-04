@@ -4,6 +4,3 @@
 [submodule "dependencies/require"]
 	path = dependencies/require
 	url = https://github.com/rharel/csharp-require.git
-[submodule "dependencies/m3pd-common"]
-	path = dependencies/m3pd-common
-	url = git@bitbucket.org:raoul_harel/m3pd-common.git
