@@ -75,7 +75,7 @@ namespace rharel.M3PD.Communication.Management
         }
 
         /// <summary>
-        /// Gets supported data types.
+        /// Gets supported channels.
         /// </summary>
         public ImmutableChannelBatch Channels { get; }
 
