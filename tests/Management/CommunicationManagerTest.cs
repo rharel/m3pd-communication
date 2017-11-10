@@ -23,8 +23,8 @@ namespace rharel.M3PD.Communication.Management.Tests
         [Test]
         public void Test_InitialState()
         {
-            Assert.AreEqual(1, _manager.DataTypes.Count);
-            Assert.IsTrue(_manager.DataTypes.Contains(typeof(int)));
+            Assert.AreEqual(1, _manager.Channels.DataTypes.Count);
+            Assert.IsTrue(_manager.Channels.DataTypes.Contains(typeof(int)));
 
             Assert.IsTrue(_manager.Agents.IsEmpty());
         }

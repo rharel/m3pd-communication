@@ -80,7 +80,7 @@ namespace rharel.M3PD.Communication.Management
                         "Cannot add through an inactive submission."
                     );
                 }
-                if (!Manager.DataTypes.Contains(typeof(T)))
+                if (!Manager.Channels.DataTypes.Contains(typeof(T)))
                 {
                     throw new ArgumentException(nameof(T));
                 }

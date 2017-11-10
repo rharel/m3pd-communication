@@ -4,7 +4,6 @@ using rharel.M3PD.Common.Collections;
 using rharel.M3PD.Common.DesignPatterns;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace rharel.M3PD.Communication.Management
 {
@@ -71,14 +70,14 @@ namespace rharel.M3PD.Communication.Management
 
             _channels = channels;
 
-            DataTypes = _channels.DataTypes;
+            Channels = _channels;
             Agents = new CollectionView<Agent>(_agents);
         }
 
         /// <summary>
         /// Gets supported data types.
         /// </summary>
-        public ImmutableCollection<Type> DataTypes { get; }
+        public ImmutableChannelBatch Channels { get; }
 
         /// <summary>
         /// Gets engaged agents.
@@ -155,14 +154,8 @@ namespace rharel.M3PD.Communication.Management
         /// </returns>
         public override string ToString()
         {
-            string types = string.Join
-            (
-                ", ",
-                DataTypes.Select(item => item.ToString())
-                         .ToArray()
-            );
             return $"{nameof(CommunicationManager)}{{ " +
-                   $"{nameof(DataTypes)} = [{types}] }}";
+                   $"{nameof(Channels)} = {Channels} }}";
         }
 
         /// <summary>
