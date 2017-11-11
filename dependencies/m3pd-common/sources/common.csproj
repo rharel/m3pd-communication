@@ -44,8 +44,12 @@
     <Compile Include="Collections\Extensions\ImmutableCollectionExtensions.cs" />
     <Compile Include="Collections\Interfaces\ImmutableCollection.cs" />
     <Compile Include="Collections\Interfaces\ImmutableList.cs" />
+    <Compile Include="Collections\Pair.cs" />
     <Compile Include="Collections\Views\CollectionView.cs" />
     <Compile Include="Collections\Views\ListView.cs" />
+    <Compile Include="Delegates\EventHandlers.cs" />
+    <Compile Include="Delegates\Indicators.cs" />
+    <Compile Include="Delegates\Predicates.cs" />
     <Compile Include="DesignPatterns\ObjectBuilder.cs" />
     <Compile Include="Hashing\HashCombiner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,6 +4,7 @@ using rharel.M3PD.Common.Collections;
 using rharel.M3PD.Common.DesignPatterns;
 using System;
 using System.Collections.Generic;
+using static rharel.Functional.Option;
 
 namespace rharel.M3PD.Communication.Management
 {
@@ -136,11 +137,11 @@ namespace rharel.M3PD.Communication.Management
                 agent.Perceive(this, _channels);
                 
                 var submission = new DataSubmission(this, agent.ID);
-                ActiveDataSubmission = new Some<DataSubmission>(submission);
+                ActiveDataSubmission = Some(submission);
                 agent.Act(submission);
             }
 
-            ActiveDataSubmission = new None<DataSubmission>();
+            ActiveDataSubmission = None<DataSubmission>();
 
             _channels.SwapBuffers();
             _channels.Clear();
@@ -162,7 +163,7 @@ namespace rharel.M3PD.Communication.Management
         /// Gets or sets the active data submission.
         /// </summary>
         private Optional<DataSubmission> ActiveDataSubmission { get; set; } = (
-            new None<DataSubmission>()
+            None<DataSubmission>()
         );
 
         private readonly ChannelBatch _channels;
