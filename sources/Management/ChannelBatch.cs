@@ -41,7 +41,7 @@ namespace rharel.M3PD.Communication.Management
 
                 _channel_by_data_type.Add(
                     type,
-                    new DoubleBufferDataChannel<T>()
+                    new DoubleBufferChannel<T>()
                 );
 
                 return this;
@@ -99,11 +99,11 @@ namespace rharel.M3PD.Communication.Management
         /// <exception cref="ArgumentException">
         /// When attempting to retrieve a channel of an unsupported data type.
         /// </exception>
-        public DataChannel<T> Get<T>()
+        public Channel<T> Get<T>()
         {
             Require.IsTrue(DataTypes.Contains(typeof(T)));
 
-            return (DataChannel<T>)_channel_by_data_type[typeof(T)];
+            return (Channel<T>)_channel_by_data_type[typeof(T)];
         }
 
         /// <summary>
@@ -120,13 +120,13 @@ namespace rharel.M3PD.Communication.Management
         /// <remarks>
         /// <see cref="GetPackets(Type)"/> for the non-generic version.
         /// </remarks>
-        public ImmutableCollection<DataPacket<T>> GetPackets<T>()
+        public ImmutableCollection<Packet<T>> GetPackets<T>()
         {
             if (!DataTypes.Contains(typeof(T)))
             {
                 throw new ArgumentException(nameof(T));
             }
-            return ((DataChannel<T>)_channel_by_data_type[typeof(T)]).Packets;
+            return ((Channel<T>)_channel_by_data_type[typeof(T)]).Packets;
         }
         /// <summary>
         /// Gets the packets of the channel corresponding to the specified data 

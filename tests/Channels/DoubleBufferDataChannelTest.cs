@@ -9,16 +9,16 @@ namespace rharel.M3PD.Communication.Channels.Tests
     [TestFixture]
     public sealed class DoubleBufferDataChannelTest
     {
-        private static readonly DataPacket<string> PACKET = (
-            new DataPacket<string>("mock_sender_id", "mock_payload")
+        private static readonly Packet<string> PACKET = (
+            new Packet<string>("mock_sender_id", "mock_payload")
         );
 
-        private DoubleBufferDataChannel<string> _channel;
+        private DoubleBufferChannel<string> _channel;
 
         [SetUp]
         public void Setup()
         {
-            _channel = new DoubleBufferDataChannel<string>();
+            _channel = new DoubleBufferChannel<string>();
         }
 
         [Test]

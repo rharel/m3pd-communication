@@ -7,7 +7,7 @@ namespace rharel.M3PD.Communication.Packets
     /// Envelopes a piece of data in transit.
     /// </summary>
     /// <remarks>
-    /// <see cref="DataPacket{T}"/> for the generic version.
+    /// <see cref="Packet{T}"/> for the generic version.
     /// </remarks>
     public interface DataPacket
     {
@@ -27,7 +27,7 @@ namespace rharel.M3PD.Communication.Packets
     /// <remarks>
     /// <see cref="DataPacket"/> for the non-generic version.
     /// </remarks>
-    public struct DataPacket<T>: DataPacket
+    public struct Packet<T>: DataPacket
     {
         /// <summary>
         /// Creates a new packet.
@@ -40,7 +40,7 @@ namespace rharel.M3PD.Communication.Packets
         /// <exception cref="ArgumentNullException">
         /// When <paramref name="payload"/> is null.  
         /// </exception>
-        internal DataPacket(string sender_id, T payload)
+        internal Packet(string sender_id, T payload)
         {
             Require.IsNotBlank(sender_id);
             Require.IsNotNull(payload);
@@ -113,7 +113,7 @@ namespace rharel.M3PD.Communication.Packets
         /// </returns>
         public override string ToString()
         {
-            return $"{nameof(DataPacket<T>)}{{ " +
+            return $"{nameof(Packet<T>)}{{ " +
                    $"{nameof(SenderID)} = {SenderID}, " +
                    $"{nameof(Payload)} = {Payload} }}";
         }

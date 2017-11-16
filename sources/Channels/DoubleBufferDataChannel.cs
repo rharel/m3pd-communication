@@ -16,7 +16,7 @@ namespace rharel.M3PD.Communication.Channels
     /// to the back buffer visible, the two buffers may be swapped.
     /// </para>
     /// <para>
-    /// <see cref="DoubleBufferDataChannel{T}"/> for the generic version.
+    /// <see cref="DoubleBufferChannel{T}"/> for the generic version.
     /// </para>
     /// </remarks>
     internal interface DoubleBufferDataChannel: DataChannel
@@ -33,8 +33,8 @@ namespace rharel.M3PD.Communication.Channels
     /// <remarks>
     /// <see cref="DoubleBufferDataChannel"/> for the non-generic version.
     /// </remarks>
-    internal sealed class DoubleBufferDataChannel<T> : DoubleBufferDataChannel,
-                                                       DataChannel<T>
+    internal sealed class DoubleBufferChannel<T> : DoubleBufferDataChannel,
+                                                   Channel<T>
     {
         /// <summary>
         /// Gets the type of data the channel carries.
@@ -47,7 +47,7 @@ namespace rharel.M3PD.Communication.Channels
         /// <remarks>
         /// <see cref="DataChannel.Packets"/> for the non-generic version.
         /// </remarks>
-        public ImmutableCollection<DataPacket<T>> Packets => (
+        public ImmutableCollection<Packet<T>> Packets => (
             _front_buffer.Packets
         );
         /// <summary>
@@ -125,16 +125,16 @@ namespace rharel.M3PD.Communication.Channels
         /// </returns>
         public override string ToString()
         {
-            return $"{nameof(DoubleBufferDataChannel<T>)}{{ " +
+            return $"{nameof(DoubleBufferChannel<T>)}{{ " +
                    $"{nameof(DataType)} = {DataType}, " +
                    $"{nameof(Packets)} = {Packets} }}";
         }
 
-        private DataChannel<T> _front_buffer = (
-            new SingleBufferDataChannel<T>()
+        private Channel<T> _front_buffer = (
+            new SingleBufferChannel<T>()
         );
-        private DataChannel<T> _back_buffer = (
-            new SingleBufferDataChannel<T>()
+        private Channel<T> _back_buffer = (
+            new SingleBufferChannel<T>()
         );
     }
 }

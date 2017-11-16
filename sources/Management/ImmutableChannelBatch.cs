@@ -26,7 +26,7 @@ namespace rharel.M3PD.Communication.Management
         /// <remarks>
         /// <see cref="GetPackets(Type)"/> for the non-generic version.
         /// </remarks>
-        ImmutableCollection<DataPacket<T>> GetPackets<T>();
+        ImmutableCollection<Packet<T>> GetPackets<T>();
         /// <summary>
         /// Gets the packets of the channel corresponding to the specified data 
         /// type.

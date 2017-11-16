@@ -13,14 +13,14 @@ namespace rharel.M3PD.Communication.Channels
     /// <remarks>
     /// <see cref="DataChannel"/> for the non-generic version.
     /// </remarks>
-    internal sealed class SingleBufferDataChannel<T> : DataChannel<T>
+    internal sealed class SingleBufferChannel<T> : Channel<T>
     {
         /// <summary>
         /// Creates a new channel.
         /// </summary>
-        public SingleBufferDataChannel()
+        public SingleBufferChannel()
         {
-            Packets = new CollectionView<DataPacket<T>>(_packets);
+            Packets = new CollectionView<Packet<T>>(_packets);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace rharel.M3PD.Communication.Channels
         /// <remarks>
         /// <see cref="DataChannel.Packets"/> for the non-generic version.
         /// </remarks>
-        public ImmutableCollection<DataPacket<T>> Packets { get; }
+        public ImmutableCollection<Packet<T>> Packets { get; }
         /// <summary>
         /// Gets the packets currently live on the channel.
         /// </summary>
@@ -69,7 +69,7 @@ namespace rharel.M3PD.Communication.Channels
             Require.IsNotBlank(sender_id);
             Require.IsNotNull(payload);
 
-            _packets.Add(new DataPacket<T>(sender_id, payload));
+            _packets.Add(new Packet<T>(sender_id, payload));
         }
         /// <summary>
         /// Posts the specified packet onto the channel.
@@ -100,13 +100,13 @@ namespace rharel.M3PD.Communication.Channels
         /// </returns>
         public override string ToString()
         {
-            return $"{nameof(SingleBufferDataChannel<T>)}{{ " +
+            return $"{nameof(SingleBufferChannel<T>)}{{ " +
                    $"{nameof(DataType)} = {DataType}, " +
                    $"{nameof(Packets)} = {Packets} }}";
         }
 
-        private readonly ICollection<DataPacket<T>> _packets = (
-            new List<DataPacket<T>>()
+        private readonly ICollection<Packet<T>> _packets = (
+            new List<Packet<T>>()
         );
     }
 }

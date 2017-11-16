@@ -16,19 +16,19 @@ namespace rharel.M3PD.Communication.Packets.Test
         public void Test_Constructor_WithInvalidArgs()
         {
             Assert.Throws<ArgumentException>(
-                () => new DataPacket<string>(null, PAYLOAD)
+                () => new Packet<string>(null, PAYLOAD)
             );
             Assert.Throws<ArgumentException>(
-                () => new DataPacket<string>(" ", PAYLOAD)
+                () => new Packet<string>(" ", PAYLOAD)
             );
             Assert.Throws<ArgumentNullException>(
-                () => new DataPacket<string>(SENDER_ID, null)
+                () => new Packet<string>(SENDER_ID, null)
             );
         }
         [Test]
         public void Test_Constructor()
         {
-            var packet = new DataPacket<string>(SENDER_ID, PAYLOAD);
+            var packet = new Packet<string>(SENDER_ID, PAYLOAD);
 
             Assert.AreEqual(SENDER_ID, packet.SenderID);
             Assert.AreEqual(PAYLOAD, packet.Payload);
@@ -38,16 +38,16 @@ namespace rharel.M3PD.Communication.Packets.Test
         [Test]
         public void Test_Equality()
         {
-            var original = new DataPacket<string>(SENDER_ID, PAYLOAD);
-            var good_copy = new DataPacket<string>(
+            var original = new Packet<string>(SENDER_ID, PAYLOAD);
+            var good_copy = new Packet<string>(
                 original.SenderID, 
                 original.Payload
             );
-            var flawed_author_copy = new DataPacket<string>(
+            var flawed_author_copy = new Packet<string>(
                 $"another_{SENDER_ID}", 
                 original.Payload
             );
-            var flawed_payload_copy = new DataPacket<string>(
+            var flawed_payload_copy = new Packet<string>(
                 original.SenderID,
                 $"wrong {original.Payload}"
             );
@@ -66,8 +66,8 @@ namespace rharel.M3PD.Communication.Packets.Test
             var payload = new FooDerived();
 
             Assert.AreEqual(
-                new DataPacket<Foo>(SENDER_ID, payload),
-                new DataPacket<FooDerived>(SENDER_ID, payload)
+                new Packet<Foo>(SENDER_ID, payload),
+                new Packet<FooDerived>(SENDER_ID, payload)
             );
         }
     }

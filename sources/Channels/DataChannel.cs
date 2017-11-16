@@ -8,7 +8,7 @@ namespace rharel.M3PD.Communication.Channels
     /// Represents a communication channel carrying data packets.
     /// </summary>
     /// <remarks>
-    /// <see cref="DataChannel{T}"/> for the generic version.
+    /// <see cref="Channel{T}"/> for the generic version.
     /// </remarks>
     internal interface DataChannel
     {
@@ -40,12 +40,12 @@ namespace rharel.M3PD.Communication.Channels
     /// <remarks>
     /// <see cref="DataChannel"/> for the non-generic version.
     /// </remarks>
-    internal interface DataChannel<T>: DataChannel
+    internal interface Channel<T>: DataChannel
     {
         /// <summary>
         /// Gets the packets currently live on the channel.
         /// </summary>
-        new ImmutableCollection<DataPacket<T>> Packets { get; }
+        new ImmutableCollection<Packet<T>> Packets { get; }
 
         /// <summary>
         /// Posts the specified packet onto the channel.
